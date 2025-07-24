@@ -1,5 +1,5 @@
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
-from langchain_community.document_loaders import TextLoader
+from langchain_community.document_loaders import PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import FAISS
 from langchain.chains import create_retrieval_chain
@@ -20,7 +20,7 @@ embeddings = OpenAIEmbeddings(
     base_url="https://api.siliconflow.cn/v1"
 )
 
-loader = TextLoader("meeting.txt", encoding="utf-8")
+loader = PyPDFLoader("项目可行性分析报告.pdf")
 docs = loader.load()
 
 # 将文档分割成小块，以便进行有效的检索
@@ -52,7 +52,7 @@ document_chain = create_stuff_documents_chain(chat_llm, prompt)
 retrieval_chain = create_retrieval_chain(retriever, document_chain)
 
 # 提问
-question = "会议上关于新项目'Project Phoenix'的决定是什么？"
+question = "项目使用的技术框架是什么？"
 print(f"\n正在提问: {question}")
 
 response = retrieval_chain.invoke({"input": question})
