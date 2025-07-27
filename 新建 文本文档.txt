@@ -1,0 +1,87 @@
+(langchain) E:\git-project\Langchain-Learning>python online.py
+C:\Users\Flynn\.conda\envs\langchain\Lib\site-packages\langsmith\client.py:272: LangSmithMissingAPIKeyWarning: API key must be provided when using hosted LangSmith API
+  warnings.warn(
+正在提问: 今天上海的天气怎么样？
+
+
+> Entering new AgentExecutor chain...
+
+Thought： 用户询问的是上海今天的天气情况，这是一个实时查询需求。我需要通过搜索引擎获取最新的天气信息。
+Action: duckduckgo_search
+Action Input: 上海今天天气怎么样C:\Users\Flynn\.conda\envs\langchain\Lib\site-packages\langchain_community\utilities\duckduckgo_search.py:63: RuntimeWarning: This package (`duckduckgo_search`) has been renamed to `ddgs`! Use `pip install ddgs` instead.
+  with DDGS() as ddgs:
+6 days ago · 今天高温消退，预计最高气温在33℃左右。 偏北风，下午转偏东风，风力都是3~4级。 相对湿度较大，在95%~70%之间，白天体感偏潮湿闷热。 上海高温暂退. 但又要连续十天 … 6 days ago · 周末天气 今天下班时段和夜里，本市仍有阵雨或雷雨，局部大雨，回家路上注意防范。 双休日上海处在 副热带高压西南侧边缘，受东南风影响，以多云到阴天气为主，蓝天、白 … May 17, 2025 · 明天上午多云到阴局部短时阵雨，雨势总体较弱，对出行影响不大。 中午起转多云天气。 偏东风3-4级，气温较今天有明显回落，全天在20-26℃之间，相对湿度95%-45%，闷 … Dec 6, 2024 · DAY1：今天天气怎么样？今 天是阴天，气温很低。我希望明天天气能放晴。 修正ポイント: 今天天气怎么样？ #日语 - 说日语的黑酱于20240915发布在抖音，已经收获了407.1万个喜 欢，来抖音，记录美好生活！🍨【爆火】日本的芭菲甜点成外国人心头好 近年来，日本的“パフェ”（冰 …Traceback (most recent call last):
+  File "C:\Users\Flynn\.conda\envs\langchain\Lib\site-packages\langchain\agents\agent.py", line 1354, in _iter_next_step
+    output = self._action_agent.plan(
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Flynn\.conda\envs\langchain\Lib\site-packages\langchain\agents\agent.py", line 461, in plan
+    for chunk in self.runnable.stream(inputs, config={"callbacks": callbacks}):
+  File "C:\Users\Flynn\.conda\envs\langchain\Lib\site-packages\langchain_core\runnables\base.py", line 3437, in stream
+    yield from self.transform(iter([input]), config, **kwargs)
+  File "C:\Users\Flynn\.conda\envs\langchain\Lib\site-packages\langchain_core\runnables\base.py", line 3423, in transform
+    yield from self._transform_stream_with_config(
+  File "C:\Users\Flynn\.conda\envs\langchain\Lib\site-packages\langchain_core\runnables\base.py", line 2214, in _transform_stream_with_config
+    chunk: Output = context.run(next, iterator)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Flynn\.conda\envs\langchain\Lib\site-packages\langchain_core\runnables\base.py", line 3385, in _transform
+    yield from final_pipeline
+  File "C:\Users\Flynn\.conda\envs\langchain\Lib\site-packages\langchain_core\runnables\base.py", line 1446, in transform
+    yield from self.stream(final, config, **kwargs)
+  File "C:\Users\Flynn\.conda\envs\langchain\Lib\site-packages\langchain_core\runnables\base.py", line 1014, in stream
+    yield self.invoke(input, config, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Flynn\.conda\envs\langchain\Lib\site-packages\langchain_core\output_parsers\base.py", line 196, in invoke
+    return self._call_with_config(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Flynn\.conda\envs\langchain\Lib\site-packages\langchain_core\runnables\base.py", line 1939, in _call_with_config
+    context.run(
+  File "C:\Users\Flynn\.conda\envs\langchain\Lib\site-packages\langchain_core\runnables\config.py", line 429, in call_func_with_variable_args
+    return func(input, **kwargs)  # type: ignore[call-arg]
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Flynn\.conda\envs\langchain\Lib\site-packages\langchain_core\output_parsers\base.py", line 197, in <lambda>
+    lambda inner_input: self.parse_result(
+                        ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Flynn\.conda\envs\langchain\Lib\site-packages\langchain_core\output_parsers\base.py", line 250, in parse_result
+    return self.parse(result[0].text)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Flynn\.conda\envs\langchain\Lib\site-packages\langchain\agents\output_parsers\react_single_input.py", line 75, in parse  
+    raise OutputParserException(
+langchain_core.exceptions.OutputParserException: Could not parse LLM output: `
+今天上海的天气情况如下：
+
+- **天气状况**：预计今天下班时段和夜里，上海仍有阵雨或雷雨，局部大雨。白天以多云到阴天为主。
+- **气温**：最高气温在33℃左右，体感潮湿闷热。
+- **风力**：偏北风，下午转偏东风，风力3~4级。
+- **湿度**：相对湿度在95%~70%之间，湿度较高。
+
+建议出行时携带雨具，注意防范雷雨天气。`
+For troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\git-project\Langchain-Learning\online.py", line 33, in <module>
+    agent_executor.invoke({"input": question})
+  File "C:\Users\Flynn\.conda\envs\langchain\Lib\site-packages\langchain\chains\base.py", line 167, in invoke
+    raise e
+  File "C:\Users\Flynn\.conda\envs\langchain\Lib\site-packages\langchain\chains\base.py", line 157, in invoke
+    self._call(inputs, run_manager=run_manager)
+  File "C:\Users\Flynn\.conda\envs\langchain\Lib\site-packages\langchain\agents\agent.py", line 1620, in _call
+    next_step_output = self._take_next_step(
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Flynn\.conda\envs\langchain\Lib\site-packages\langchain\agents\agent.py", line 1326, in _take_next_step
+    [
+  File "C:\Users\Flynn\.conda\envs\langchain\Lib\site-packages\langchain\agents\agent.py", line 1326, in <listcomp>
+    [
+  File "C:\Users\Flynn\.conda\envs\langchain\Lib\site-packages\langchain\agents\agent.py", line 1365, in _iter_next_step
+    raise ValueError(
+ValueError: An output parsing error occurred. In order to pass this error back to the agent and have it try again, pass `handle_parsing_errors=True` to the AgentExecutor. This is the error: Could not parse LLM output: `
+今天上海的天气情况如下：
+
+- **天气状况**：预计今天下班时段和夜里，上海仍有阵雨或雷雨，局部大雨。白天以多云到阴天为主。
+- **气温**：最高气温在33℃左右，体感潮湿闷热。
+- **风力**：偏北风，下午转偏东风，风力3~4级。
+- **湿度**：相对湿度在95%~70%之间，湿度较高。
+
+建议出行时携带雨具，注意防范雷雨天气。`
+For troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE
