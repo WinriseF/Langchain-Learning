@@ -1,3 +1,5 @@
+import os
+from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_community.document_loaders import PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -6,9 +8,11 @@ from langchain.chains import create_retrieval_chain
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain_core.prompts import ChatPromptTemplate
 
+load_dotenv()
+
 chat_llm = ChatOpenAI(
     model="deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
-    api_key="sk-dksdphixqcfngyjkcvzbyanwkzxltgmoccmxscmyyrnsrung",
+    api_key=os.getenv("LLM"),
     base_url="https://api.siliconflow.cn/v1",
     temperature=0
 )
@@ -16,7 +20,7 @@ chat_llm = ChatOpenAI(
 # 中文向量嵌入模型配置
 embeddings = OpenAIEmbeddings(
     model="BAAI/bge-m3",
-    api_key="sk-dksdphixqcfngyjkcvzbyanwkzxltgmoccmxscmyyrnsrung",
+    api_key=os.getenv("LLM"),
     base_url="https://api.siliconflow.cn/v1"
 )
 

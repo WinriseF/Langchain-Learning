@@ -1,4 +1,5 @@
 import os
+from dotenv import load_dotenv
 from langchain.agents import AgentExecutor, create_react_agent
 from langchain.tools import tool
 from langchain_community.document_loaders import WebBaseLoader 
@@ -9,13 +10,15 @@ from langchain_openai import ChatOpenAI
 from langchain import hub
 from langchain.memory import ConversationBufferMemory
 
+# 加载环境变量
+load_dotenv()
 
-os.environ["LLM"] = "sk-izkjegktavpikceucoempxuvhxoqzfyhiaxyxchmsxubmjzm"
-os.environ["SERPER_API_KEY"] = "d4f57f3393abae050aa0a6cbc8e50271f3ac94da" 
+llm_api_key = os.getenv("LLM")
+serper_api_key = os.getenv("SERPER_API_KEY")
 
 llm = ChatOpenAI(
     model="Qwen/Qwen3-8B", 
-    api_key=os.getenv("LLM"),
+    api_key=llm_api_key,
     base_url="https://api.siliconflow.cn/v1",
     temperature=0
 )

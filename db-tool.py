@@ -1,10 +1,12 @@
 import os
+from dotenv import load_dotenv
 from langchain_community.agent_toolkits.sql.base import create_sql_agent
 from langchain_community.utilities.sql_database import SQLDatabase
 from langchain_community.agent_toolkits.sql.toolkit import SQLDatabaseToolkit
 from langchain_openai import ChatOpenAI
 
-os.environ["LLM"] = "sk-dksdphixqcfngyjkcvzbyanwkzxltgmoccmxscmyyrnsrung"
+# 加载环境变量
+load_dotenv()
 
 llm = ChatOpenAI(
     model="THUDM/GLM-4-9B-0414",

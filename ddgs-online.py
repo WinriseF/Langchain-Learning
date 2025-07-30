@@ -1,12 +1,17 @@
+import os
+from dotenv import load_dotenv
 from langchain.agents import AgentExecutor, create_react_agent
 from langchain_community.tools import DuckDuckGoSearchRun
 from langchain_core.prompts import PromptTemplate
 from langchain_openai import ChatOpenAI
 from langchain import hub
 
+# 加载环境变量
+load_dotenv()
+
 llm = ChatOpenAI(
     model="THUDM/GLM-4-9B-0414",
-    api_key="sk-dksdphixqcfngyjkcvzbyanwkzxltgmoccmxscmyyrnsrung",
+    api_key=os.getenv("LLM"),
     base_url="https://api.siliconflow.cn/v1",
     temperature=0
 )

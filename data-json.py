@@ -1,4 +1,5 @@
 import os
+from dotenv import load_dotenv
 import datetime
 from typing import List, Optional
 from pydantic import BaseModel, Field
@@ -6,9 +7,11 @@ from langchain_openai import ChatOpenAI
 from langchain_core.prompts import PromptTemplate
 from langchain.output_parsers import PydanticOutputParser
 
+load_dotenv()
+
 llm = ChatOpenAI(
     model="deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
-    api_key="sk-izkjegktavpikceucoempxuvhxoqzfyhiaxyxchmsxubmjzm",
+    api_key=os.getenv("LLM"),
     base_url="https://api.siliconflow.cn/v1",
     temperature=0
 )

@@ -1,4 +1,5 @@
 import os
+from dotenv import load_dotenv
 from langchain.agents import AgentExecutor, create_react_agent
 from langchain.tools import tool
 from langchain_community.document_loaders import WebBaseLoader 
@@ -8,8 +9,8 @@ from langchain_community.utilities import GoogleSerperAPIWrapper
 from langchain_openai import ChatOpenAI
 from langchain import hub
 
-os.environ["LLM"] = "sk-dksdphixqcfngyjkcvzbyanwkzxltgmoccmxscmyyrnsrung"
-os.environ["SERPER_API_KEY"] = "987e66fccb22e21b0caad2cb518fdc67287878ad" 
+# 加载环境变量
+load_dotenv()
 
 llm = ChatOpenAI(
     model="THUDM/GLM-4-9B-0414",
